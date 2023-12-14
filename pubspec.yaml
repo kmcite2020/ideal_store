@@ -1,0 +1,30 @@
+name: ideal_store
+description: A new Flutter project.
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  states_rebuilder: 6.3.0
+  uuid: ^3.0.7
+  file_picker: ^5.2.5
+  google_fonts: ^5.1.0
+  colornames: ^0.1.0
+  isar_flutter_libs: ^3.1.0+1
+  isar: ^3.1.0+1
+  path_provider: ^2.0.15
+  flex_color_scheme: ^7.3.1
+dev_dependencies:
+  isar_generator: ^3.1.0+1
+  build_runner: 2.4.6
+
+
+flutter:
+  uses-material-design: true
+  assets:
+    - lib/assets/
+    - lib/assets/fonts/
