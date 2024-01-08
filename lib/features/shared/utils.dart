@@ -23,6 +23,7 @@ Future<void> get initDefaultImage async {
 
 Future<void> initializeDependencies() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await RM.initStorage();
   await initDefaultImage;
   GoogleFonts.config.allowRuntimeFetching = false;
   addLicenses();
