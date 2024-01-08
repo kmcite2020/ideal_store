@@ -1,5 +1,3 @@
-import 'package:ideal_store/features/shared/cities.dart';
-
 import '../../main.dart';
 
 part 'customer.freezed.dart';
@@ -18,7 +16,7 @@ class Customer with _$Customer {
   factory Customer.fromJson(Map<String, dynamic> json) =>
       _$CustomerFromJson(json);
 
-  factory Customer.id(String custmerID) => getCustomerByID(custmerID);
+  factory Customer.id(String custmerID) => customersRM().cache[custmerID]!;
   factory Customer() => Customer.raw(
         customerID: randomID,
         city: cities.first,
@@ -35,30 +33,33 @@ class Customers with _$Customers {
       _$CustomersFromJson(json);
 }
 
-final customersRM = RM.inject(
+final customersRM = RM.create(
   () => const Customers(),
-  persist: () => PersistState(
+  persistenceSettings: PersistenceSettings(
     key: 'customers',
     fromJson: (json) => Customers.fromJson(jsonDecode(json)),
     toJson: (s) => jsonEncode(s.toJson()),
   ),
 );
 
-List<Customer> get customers => customersState.cache.values.toList();
+List<Customer> get customers => customersRM().cache.values.toList();
 
-Customers get customersState => customersRM.state;
-set customersState(Customers _) => customersRM.state = _;
-Customer getCustomerByID(String id) => customersState.cache[id]!;
+set customersState(Customers _) => customersRM(_);
+Customer getCustomerByID(String id) => customersRM().cache[id]!;
 
 void setCustomer(Customer customer) {
-  customersState = customersState.copyWith(
-    cache: Map.of(customersState.cache)..[customer.customerID] = customer,
+  customersRM(
+    customersRM().copyWith(
+      cache: Map.of(customersRM().cache)..[customer.customerID] = customer,
+    ),
   );
 }
 
 void removeCustomer(String customerID) {
-  customersState = customersState.copyWith(
-    cache: Map.of(customersState.cache)..remove(customerID),
+  customersRM(
+    customersRM().copyWith(
+      cache: Map.of(customersRM().cache)..remove(customerID),
+    ),
   );
 }
 

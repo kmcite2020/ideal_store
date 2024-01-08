@@ -1,6 +1,9 @@
-import '../../main.dart';
+import 'package:flutter/material.dart';
 
-extension ObjectExtensions on Object? {
+import '../settings/settings_controller.dart';
+import 'theme_manager.dart';
+
+extension TextX on Object? {
   Text text({
     Key? key,
     TextStyle? style,
@@ -26,7 +29,7 @@ extension ObjectExtensions on Object? {
         locale: locale,
         softWrap: softWrap,
         overflow: overflow,
-        textScaler: TextScaler.linear(textScaleFactor ?? 1),
+        textScaleFactor: textScaleFactor,
         maxLines: maxLines,
         semanticsLabel: semanticsLabel,
         textWidthBasis: textWidthBasis,
@@ -35,13 +38,14 @@ extension ObjectExtensions on Object? {
       );
 }
 
-extension WidgetExtensions on Widget {
-  Widget pad({EdgeInsets? customPadding}) => Padding(
-        padding: customPadding ?? EdgeInsets.all(padding),
+extension PaddingX on Widget {
+  Widget pad([double? padding]) => Padding(
+        padding: EdgeInsets.all(padding ?? settingsController.padding),
         child: this,
       );
-  Widget clipRadius([double? _borderRadius]) => ClipRRect(
-        borderRadius: BorderRadius.circular(_borderRadius ?? borderRadius),
+  Widget clipRadius([double? borderRadius]) => ClipRRect(
+        borderRadius:
+            BorderRadius.circular(borderRadius ?? ThemeManager.borderRadius),
         child: this,
       );
   Widget center({
@@ -53,9 +57,14 @@ extension WidgetExtensions on Widget {
         heightFactor: heightFactor,
         child: this,
       );
-  Widget card({MaterialColor? materialColor}) => Card(
-        color: materialColor,
-        child: this.pad(),
+  Widget card({
+    double? widthFactor,
+    double? heightFactor,
+  }) =>
+      Center(
+        widthFactor: widthFactor,
+        heightFactor: heightFactor,
+        child: this,
       );
 }
 

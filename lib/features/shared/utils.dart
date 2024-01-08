@@ -1,4 +1,16 @@
-import 'package:ideal_store/main.dart';
+import 'dart:convert';
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:isar/isar.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:uuid/uuid.dart';
+
+import '../../assets/licenses.dart';
+import '../domain.dart';
+import '../../main.dart';
 
 const uuid = Uuid();
 String get randomID => uuid.v1();
@@ -12,6 +24,9 @@ const emptyListInfoCustomer =
 
 const emptyListInfoProduct =
     'Currently there are no products available in the list. Kindly try adding some products using the corner button.';
+const customersHiveName = 'customer';
+const productsHiveName = 'products';
+const ordersHiveName = 'orders';
 late String defaultImage;
 Future<void> get initDefaultImage async {
   ByteData bytes = await rootBundle.load('lib/assets/icon.png');
@@ -20,37 +35,18 @@ Future<void> get initDefaultImage async {
 
 Future<void> initializeDependencies() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final directory = await getApplicationDocumentsDirectory();
+  // isar = await Isar.open(
+  //   [
+  //     ProductSchema,
+  //     CustomerSchema,
+  //     OrderSchema,
+  //     DomainSchema,
+  //   ],
+  //   directory: directory.path,
+  //   name: 'IDEAL',
+  // );
   await initDefaultImage;
   GoogleFonts.config.allowRuntimeFetching = false;
   addLicenses();
-}
-
-class HiveStorage implements IPersistStore {
-  late Box box;
-
-  @override
-  Future<void> init() async {
-    await Hive.initFlutter();
-    box = await Hive.openBox('ideal_store');
-  }
-
-  @override
-  Object? read(String key) {
-    return box.get(key);
-  }
-
-  @override
-  Future<void> write<T>(String key, T value) async {
-    await box.put(key, value);
-  }
-
-  @override
-  Future<void> delete(String key) async {
-    await box.delete(key);
-  }
-
-  @override
-  Future<void> deleteAll() async {
-    await box.clear();
-  }
 }

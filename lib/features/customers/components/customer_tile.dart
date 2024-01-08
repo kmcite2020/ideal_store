@@ -1,4 +1,6 @@
-import 'package:ideal_store/features/shared/cities.dart';
+import 'package:ideal_store/features/customers/components/customer_builder.dart';
+import 'package:ideal_store/features/customers/customer.dart';
+import 'package:ideal_store/features/customers/pages/customer_page.dart';
 import 'package:ideal_store/main.dart';
 
 class CustomerTile extends UI {
