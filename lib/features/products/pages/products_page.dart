@@ -1,5 +1,4 @@
-import '../../../main.dart';
-import '../components/product_tile.dart';
+import 'package:ideal_store/main.dart';
 
 class ProductsPage extends UI {
   static const path = '/products';
@@ -27,7 +26,7 @@ class ProductsPage extends UI {
               Icons.arrow_back,
             ),
           ).pad(
-            customPadding: EdgeInsets.only(right: padding),
+            EdgeInsets.only(right: padding),
           ),
         ],
       ),

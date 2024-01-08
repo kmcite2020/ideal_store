@@ -1,8 +1,3 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:ideal_store/features/products/products_controller.dart';
-import 'package:ideal_store/features/settings/settings.dart';
-import 'package:ideal_store/features/shared/utils.dart';
-
 import '../../main.dart';
 part 'product.freezed.dart';
 part 'product.g.dart';

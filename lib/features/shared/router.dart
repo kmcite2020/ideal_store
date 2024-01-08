@@ -1,4 +1,6 @@
-import '../../main.dart';
+import 'package:states_rebuilder/states_rebuilder.dart';
+
+import '../../main.dart' hide RM;
 
 final navigator = RM.injectNavigator(
   initialLocation: DashboardPage.path,

@@ -1,7 +1,5 @@
 import 'package:ideal_store/main.dart';
 
-import '../components/customer_tile.dart';
-
 class CustomersPage extends UI {
   static const path = '/customers';
   const CustomersPage({super.key});

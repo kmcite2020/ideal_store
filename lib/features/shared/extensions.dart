@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-
-import '../settings/settings_controller.dart';
-import 'theme_manager.dart';
+import '../../main.dart';
 
 extension TextX on Object? {
   Text text({
@@ -29,7 +26,7 @@ extension TextX on Object? {
         locale: locale,
         softWrap: softWrap,
         overflow: overflow,
-        textScaleFactor: textScaleFactor,
+        textScaler: TextScaler.linear(textScaleFactor ?? 1),
         maxLines: maxLines,
         semanticsLabel: semanticsLabel,
         textWidthBasis: textWidthBasis,
@@ -39,13 +36,12 @@ extension TextX on Object? {
 }
 
 extension PaddingX on Widget {
-  Widget pad([double? padding]) => Padding(
-        padding: EdgeInsets.all(padding ?? settingsController.padding),
+  Widget pad([EdgeInsets? _padding]) => Padding(
+        padding: _padding ?? EdgeInsets.all(padding),
         child: this,
       );
-  Widget clipRadius([double? borderRadius]) => ClipRRect(
-        borderRadius:
-            BorderRadius.circular(borderRadius ?? ThemeManager.borderRadius),
+  Widget clipRadius([double? _borderRadius]) => ClipRRect(
+        borderRadius: BorderRadius.circular(_borderRadius ?? borderRadius),
         child: this,
       );
   Widget center({
@@ -58,12 +54,11 @@ extension PaddingX on Widget {
         child: this,
       );
   Widget card({
-    double? widthFactor,
+    MaterialColor? materialColor,
     double? heightFactor,
   }) =>
-      Center(
-        widthFactor: widthFactor,
-        heightFactor: heightFactor,
+      Card(
+        color: materialColor,
         child: this,
       );
 }

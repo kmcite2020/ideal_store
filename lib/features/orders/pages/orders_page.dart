@@ -1,5 +1,4 @@
 import 'package:ideal_store/features/orders/order.dart';
-import 'package:ideal_store/features/shared/extensions.dart';
 import 'package:ideal_store/main.dart';
 
 class OrdersPage extends UI {
@@ -13,7 +12,7 @@ class OrdersPage extends UI {
         actions: [
           IconButton(
             tooltip: 'Back to Dashboard',
-            onPressed: () => RM.navigate.back(),
+            onPressed: () => navigator.back(),
             icon: Icon(
               Icons.dashboard,
             ),

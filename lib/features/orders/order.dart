@@ -1,4 +1,3 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:ideal_store/main.dart';
 part 'order.freezed.dart';
 part 'order.g.dart';
@@ -21,11 +20,13 @@ class Order with _$Order {
   }) = _Order;
 
   factory Order.fromJson(Map<String, dynamic> json) => _$OrderFromJson(json);
+
+  factory Order.id(String orderID) => ordersRM().cache[orderID]!;
 }
 
-final ordersRM = RM.inject(
+final ordersRM = RM.create(
   () => Orders(),
-  persist: () => PersistState(
+  persistenceSettings: PersistenceSettings(
     key: 'orders',
     fromJson: (json) => Orders.fromJson(jsonDecode(json)),
     toJson: (s) => jsonEncode(s.toJson()),
@@ -42,8 +43,8 @@ class Orders with _$Orders {
 }
 
 List<Order> get orders => ordersState.cache.values.toList();
-Orders get ordersState => ordersRM.state;
-set ordersState(Orders _) => ordersRM.state = _;
+Orders get ordersState => ordersRM();
+set ordersState(Orders _) => ordersRM(_);
 
 void setOrder(Order order) {
   ordersState = ordersState.copyWith(

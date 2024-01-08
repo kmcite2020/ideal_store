@@ -34,11 +34,8 @@ ThemeData get darkTheme {
   );
 }
 
-bool get isDark => Theme.of(context).brightness == Brightness.dark;
-
 get okColor => materialColor[700];
 get errorColor => materialColor[300];
-BuildContext get context => RM.context!;
 
 Size get buttonSize => const Size(65, 65);
 double get appBarHeight => 80;

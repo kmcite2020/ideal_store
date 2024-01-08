@@ -1,15 +1,3 @@
-import 'dart:convert';
-import 'dart:math';
-
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:isar/isar.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:uuid/uuid.dart';
-
-import '../../assets/licenses.dart';
-import '../domain.dart';
 import '../../main.dart';
 
 const uuid = Uuid();
@@ -35,17 +23,6 @@ Future<void> get initDefaultImage async {
 
 Future<void> initializeDependencies() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final directory = await getApplicationDocumentsDirectory();
-  // isar = await Isar.open(
-  //   [
-  //     ProductSchema,
-  //     CustomerSchema,
-  //     OrderSchema,
-  //     DomainSchema,
-  //   ],
-  //   directory: directory.path,
-  //   name: 'IDEAL',
-  // );
   await initDefaultImage;
   GoogleFonts.config.allowRuntimeFetching = false;
   addLicenses();

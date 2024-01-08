@@ -1,6 +1,3 @@
-import 'package:ideal_store/features/customers/components/customer_builder.dart';
-import 'package:ideal_store/features/customers/customer.dart';
-import 'package:ideal_store/features/customers/pages/customer_page.dart';
 import 'package:ideal_store/main.dart';
 
 class CustomerTile extends UI {
@@ -89,8 +86,9 @@ class CustomerTile extends UI {
               ).pad(),
               Wrap(
                 children: customer.products
-                    .map((eachProductID) =>
-                        Product.id(eachProductID)) // TODO - 5 fix mapping
+                    .map(
+                      (eachProductID) => Product.id(eachProductID),
+                    )
                     .map(
                       (eachProduct) => SizedBox(
                         child: ActionChip.elevated(
@@ -141,7 +139,7 @@ class CustomerTile extends UI {
                 child: Row(
                   children: [
                     Icon(Icons.store).pad(
-                      customPadding: EdgeInsets.symmetric(
+                      EdgeInsets.symmetric(
                         horizontal: settingsState.padding,
                       ),
                     ),

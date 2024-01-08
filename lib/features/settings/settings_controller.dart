@@ -1,9 +1,9 @@
 import 'package:ideal_store/main.dart';
 
-final settingsRM = RM.inject(() => Settings());
+final settingsRM = RM.create(() => Settings());
 
-Settings get settingsState => settingsRM.state;
-set settingsState(Settings value) => settingsRM.state = value;
+Settings get settingsState => settingsRM();
+set settingsState(Settings value) => settingsRM(value);
 
 bool get isAddCustomerVisible => settingsState.isAddCustomerVisible;
 set isAddCustomerVisible(bool? value) {

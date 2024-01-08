@@ -1,4 +1,3 @@
-import 'package:ideal_store/features/customers/customer.dart';
 import 'package:ideal_store/main.dart';
 
 class CustomerBuilder extends UI {
