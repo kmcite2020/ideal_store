@@ -9,5 +9,5 @@ class ProductBuilder extends UI {
   });
 
   @override
-  Widget build(BuildContext context) => builder(Product.id(productID));
+  Widget build(BuildContext context) => builder(Product.fromID(productID));
 }

@@ -23,10 +23,52 @@ mixin _$Order {
   String get orderID => throw _privateConstructorUsedError;
   bool get editing => throw _privateConstructorUsedError;
   OrderStatus get orderStatus => throw _privateConstructorUsedError;
-  DateTime? get createdOn => throw _privateConstructorUsedError;
-  String? get customer => throw _privateConstructorUsedError;
+  DateTime get createdOn => throw _privateConstructorUsedError;
+  String get customerID => throw _privateConstructorUsedError;
   List<String> get products => throw _privateConstructorUsedError;
-
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String orderID,
+            bool editing,
+            OrderStatus orderStatus,
+            DateTime createdOn,
+            String customerID,
+            List<String> products)
+        raw,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String orderID, bool editing, OrderStatus orderStatus,
+            DateTime createdOn, String customerID, List<String> products)?
+        raw,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String orderID, bool editing, OrderStatus orderStatus,
+            DateTime createdOn, String customerID, List<String> products)?
+        raw,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Order value) raw,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Order value)? raw,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Order value)? raw,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $OrderCopyWith<Order> get copyWith => throw _privateConstructorUsedError;
@@ -41,8 +83,8 @@ abstract class $OrderCopyWith<$Res> {
       {String orderID,
       bool editing,
       OrderStatus orderStatus,
-      DateTime? createdOn,
-      String? customer,
+      DateTime createdOn,
+      String customerID,
       List<String> products});
 }
 
@@ -62,8 +104,8 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
     Object? orderID = null,
     Object? editing = null,
     Object? orderStatus = null,
-    Object? createdOn = freezed,
-    Object? customer = freezed,
+    Object? createdOn = null,
+    Object? customerID = null,
     Object? products = null,
   }) {
     return _then(_value.copyWith(
@@ -79,14 +121,14 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
           ? _value.orderStatus
           : orderStatus // ignore: cast_nullable_to_non_nullable
               as OrderStatus,
-      createdOn: freezed == createdOn
+      createdOn: null == createdOn
           ? _value.createdOn
           : createdOn // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      customer: freezed == customer
-          ? _value.customer
-          : customer // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DateTime,
+      customerID: null == customerID
+          ? _value.customerID
+          : customerID // ignore: cast_nullable_to_non_nullable
+              as String,
       products: null == products
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
@@ -106,8 +148,8 @@ abstract class _$$OrderImplCopyWith<$Res> implements $OrderCopyWith<$Res> {
       {String orderID,
       bool editing,
       OrderStatus orderStatus,
-      DateTime? createdOn,
-      String? customer,
+      DateTime createdOn,
+      String customerID,
       List<String> products});
 }
 
@@ -125,8 +167,8 @@ class __$$OrderImplCopyWithImpl<$Res>
     Object? orderID = null,
     Object? editing = null,
     Object? orderStatus = null,
-    Object? createdOn = freezed,
-    Object? customer = freezed,
+    Object? createdOn = null,
+    Object? customerID = null,
     Object? products = null,
   }) {
     return _then(_$OrderImpl(
@@ -142,14 +184,14 @@ class __$$OrderImplCopyWithImpl<$Res>
           ? _value.orderStatus
           : orderStatus // ignore: cast_nullable_to_non_nullable
               as OrderStatus,
-      createdOn: freezed == createdOn
+      createdOn: null == createdOn
           ? _value.createdOn
           : createdOn // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      customer: freezed == customer
-          ? _value.customer
-          : customer // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DateTime,
+      customerID: null == customerID
+          ? _value.customerID
+          : customerID // ignore: cast_nullable_to_non_nullable
+              as String,
       products: null == products
           ? _value._products
           : products // ignore: cast_nullable_to_non_nullable
@@ -160,21 +202,21 @@ class __$$OrderImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$OrderImpl implements _Order {
+class _$OrderImpl extends _Order {
   const _$OrderImpl(
-      {this.orderID = '',
+      {required this.orderID,
       this.editing = true,
       this.orderStatus = OrderStatus.ordered,
-      this.createdOn,
-      this.customer,
+      required this.createdOn,
+      required this.customerID,
       final List<String> products = const <String>[]})
-      : _products = products;
+      : _products = products,
+        super._();
 
   factory _$OrderImpl.fromJson(Map<String, dynamic> json) =>
       _$$OrderImplFromJson(json);
 
   @override
-  @JsonKey()
   final String orderID;
   @override
   @JsonKey()
@@ -183,9 +225,9 @@ class _$OrderImpl implements _Order {
   @JsonKey()
   final OrderStatus orderStatus;
   @override
-  final DateTime? createdOn;
+  final DateTime createdOn;
   @override
-  final String? customer;
+  final String customerID;
   final List<String> _products;
   @override
   @JsonKey()
@@ -197,7 +239,7 @@ class _$OrderImpl implements _Order {
 
   @override
   String toString() {
-    return 'Order(orderID: $orderID, editing: $editing, orderStatus: $orderStatus, createdOn: $createdOn, customer: $customer, products: $products)';
+    return 'Order.raw(orderID: $orderID, editing: $editing, orderStatus: $orderStatus, createdOn: $createdOn, customerID: $customerID, products: $products)';
   }
 
   @override
@@ -211,21 +253,90 @@ class _$OrderImpl implements _Order {
                 other.orderStatus == orderStatus) &&
             (identical(other.createdOn, createdOn) ||
                 other.createdOn == createdOn) &&
-            (identical(other.customer, customer) ||
-                other.customer == customer) &&
+            (identical(other.customerID, customerID) ||
+                other.customerID == customerID) &&
             const DeepCollectionEquality().equals(other._products, _products));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, orderID, editing, orderStatus,
-      createdOn, customer, const DeepCollectionEquality().hash(_products));
+      createdOn, customerID, const DeepCollectionEquality().hash(_products));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$OrderImplCopyWith<_$OrderImpl> get copyWith =>
       __$$OrderImplCopyWithImpl<_$OrderImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String orderID,
+            bool editing,
+            OrderStatus orderStatus,
+            DateTime createdOn,
+            String customerID,
+            List<String> products)
+        raw,
+  }) {
+    return raw(orderID, editing, orderStatus, createdOn, customerID, products);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String orderID, bool editing, OrderStatus orderStatus,
+            DateTime createdOn, String customerID, List<String> products)?
+        raw,
+  }) {
+    return raw?.call(
+        orderID, editing, orderStatus, createdOn, customerID, products);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String orderID, bool editing, OrderStatus orderStatus,
+            DateTime createdOn, String customerID, List<String> products)?
+        raw,
+    required TResult orElse(),
+  }) {
+    if (raw != null) {
+      return raw(
+          orderID, editing, orderStatus, createdOn, customerID, products);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Order value) raw,
+  }) {
+    return raw(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Order value)? raw,
+  }) {
+    return raw?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Order value)? raw,
+    required TResult orElse(),
+  }) {
+    if (raw != null) {
+      return raw(this);
+    }
+    return orElse();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -235,14 +346,15 @@ class _$OrderImpl implements _Order {
   }
 }
 
-abstract class _Order implements Order {
+abstract class _Order extends Order {
   const factory _Order(
-      {final String orderID,
+      {required final String orderID,
       final bool editing,
       final OrderStatus orderStatus,
-      final DateTime? createdOn,
-      final String? customer,
+      required final DateTime createdOn,
+      required final String customerID,
       final List<String> products}) = _$OrderImpl;
+  const _Order._() : super._();
 
   factory _Order.fromJson(Map<String, dynamic> json) = _$OrderImpl.fromJson;
 
@@ -253,9 +365,9 @@ abstract class _Order implements Order {
   @override
   OrderStatus get orderStatus;
   @override
-  DateTime? get createdOn;
+  DateTime get createdOn;
   @override
-  String? get customer;
+  String get customerID;
   @override
   List<String> get products;
   @override
@@ -343,9 +455,10 @@ class __$$OrdersImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$OrdersImpl implements _Orders {
+class _$OrdersImpl extends _Orders {
   const _$OrdersImpl({final Map<String, Order> cache = const <String, Order>{}})
-      : _cache = cache;
+      : _cache = cache,
+        super._();
 
   factory _$OrdersImpl.fromJson(Map<String, dynamic> json) =>
       _$$OrdersImplFromJson(json);
@@ -391,8 +504,9 @@ class _$OrdersImpl implements _Orders {
   }
 }
 
-abstract class _Orders implements Orders {
+abstract class _Orders extends Orders {
   const factory _Orders({final Map<String, Order> cache}) = _$OrdersImpl;
+  const _Orders._() : super._();
 
   factory _Orders.fromJson(Map<String, dynamic> json) = _$OrdersImpl.fromJson;
 

@@ -26,8 +26,14 @@ class Product with _$Product {
     final MaterialColor materialColor,
     @Default(0) final int price,
   }) = _Product;
-  factory Product() => Product.raw(productID: randomID, image: defaultImage);
-  factory Product.id(productID) => getProductByID(productID);
+  factory Product() {
+    return Product.raw(
+      productID: randomID,
+      image: imageRM.state,
+    );
+  }
+  factory Product.fromID(productID) =>
+      productsRM().cache[productID] ?? Product().copyWith(productID: '');
   factory Product.fromJson(json) => _$ProductFromJson(json);
 }
 
@@ -39,6 +45,35 @@ class Products with _$Products {
   const Products._();
   List<Product> get products => cache.values.toList();
   void clearAll() => productsRM(Products());
+  void setProduct(Product product) => productsRM(
+        productsRM().copyWith(
+          cache: Map.of(productsRM().cache)..[product.productID] = product,
+        ),
+      );
+  void deleteProduct(String productID) => productsRM(
+        productsRM().copyWith(
+          cache: Map.of(productsRM().cache)..remove(productID),
+        ),
+      );
 
   factory Products.fromJson(json) => _$ProductsFromJson(json);
 }
+
+final productsRM = RM.persistent(
+  () => Products(),
+  key: 'products',
+  fromJson: Products.fromJson,
+);
+
+
+// Product
+// id
+// price
+// stock
+// rating
+// description
+// details
+// brand
+// updates to price & when
+// reviews
+// add to cart

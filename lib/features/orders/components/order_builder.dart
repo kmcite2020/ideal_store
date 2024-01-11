@@ -11,5 +11,5 @@ class OrderBuilder extends UI {
   final Widget Function(Order order) builder;
 
   @override
-  Widget build(BuildContext context) => builder(Order.id(orderID));
+  Widget build(BuildContext context) => builder(Order.fromID(orderID));
 }

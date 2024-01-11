@@ -41,7 +41,8 @@ class CustomerPage extends UI {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: customer.products
                   .map(
-                    (e) => Product.id(e).name.text(textScaleFactor: 2).pad(),
+                    (e) =>
+                        Product.fromID(e).name.text(textScaleFactor: 2).pad(),
                   )
                   .toList(),
             ),

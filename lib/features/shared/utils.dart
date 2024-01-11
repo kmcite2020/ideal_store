@@ -12,20 +12,12 @@ const emptyListInfoCustomer =
 
 const emptyListInfoProduct =
     'Currently there are no products available in the list. Kindly try adding some products using the corner button.';
-late String defaultImage;
-Future<void> get initDefaultImage async {
-  ByteData bytes = await rootBundle.load('lib/assets/icon.png');
-  defaultImage = base64Encode(bytes.buffer.asUint8List());
-}
 
-final imageRM = RM.simple(
-  () => rootBundle.load('lib/assets/icon.png'),
+final imageRM = RM.future(
+  () async {
+    ByteData bytes = await rootBundle.load('lib/assets/icon.png');
+    return base64Encode(bytes.buffer.asUint8List());
+  },
 );
 
-Future<void> initializeDependencies() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await RM.initStorage();
-  await initDefaultImage;
-  GoogleFonts.config.allowRuntimeFetching = false;
-  addLicenses();
-}
+Future<void> initializeDependencies() async {}

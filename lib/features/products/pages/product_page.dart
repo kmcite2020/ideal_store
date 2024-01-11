@@ -1,4 +1,5 @@
 import '../../../main.dart';
+import '../file_picker.dart';
 
 class ProductPage extends UI {
   static const path = '/product';
@@ -43,7 +44,8 @@ class ProductPage extends UI {
                       ? TextFormField(
                           initialValue: product.name,
                           onChanged: (name) {
-                            setProduct(product.copyWith(name: name));
+                            productsRM()
+                                .setProduct(product.copyWith(name: name));
                           },
                         )
                       : product.name.text(textScaleFactor: 3))
@@ -52,7 +54,7 @@ class ProductPage extends UI {
                       ? TextFormField(
                           initialValue: product.model,
                           onChanged: (model) {
-                            setProduct(
+                            productsRM().setProduct(
                               product.copyWith(model: model),
                             );
                           },
@@ -71,7 +73,8 @@ class ProductPage extends UI {
                               )
                               .toList(),
                           onChanged: (brand) {
-                            setProduct(product.copyWith(brand: brand!));
+                            productsRM()
+                                .setProduct(product.copyWith(brand: brand!));
                           },
                         )
                       : product.brand.description.text())
@@ -88,7 +91,7 @@ class ProductPage extends UI {
                               )
                               .toList(),
                           onChanged: (materialColor) {
-                            setProduct(product.copyWith(
+                            productsRM().setProduct(product.copyWith(
                                 materialColor: materialColor!));
                           },
                         )
@@ -113,7 +116,8 @@ class ProductPage extends UI {
                               // );
                               return;
                             }
-                            setProduct(product.copyWith(image: image));
+                            productsRM()
+                                .setProduct(product.copyWith(image: image));
                           },
                           child: 'Pick Image'.text(),
                         )
@@ -131,7 +135,8 @@ class ProductPage extends UI {
                           divisions: 99999,
                           value: product.price.toDouble(),
                           onChanged: (price) {
-                            setProduct(product.copyWith(price: price.toInt()));
+                            productsRM().setProduct(
+                                product.copyWith(price: price.toInt()));
                           },
                           label: product.price.toStringAsFixed(0),
                         )
@@ -144,7 +149,8 @@ class ProductPage extends UI {
                           divisions: 500,
                           value: product.stock.toDouble(),
                           onChanged: (x) {
-                            setProduct(product.copyWith(stock: x.toInt()));
+                            productsRM()
+                                .setProduct(product.copyWith(stock: x.toInt()));
                           },
                         )
                       : product.stock.text())
@@ -153,7 +159,8 @@ class ProductPage extends UI {
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
-              setProduct(product.copyWith(editing: !product.editing));
+              productsRM()
+                  .setProduct(product.copyWith(editing: !product.editing));
             },
             child: Icon(product.editing ? Icons.done : Icons.edit),
           ),

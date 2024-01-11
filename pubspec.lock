@@ -376,7 +376,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "198090b41a3f715d1ddcdd77b87e5c9b070840ed"
+      resolved-ref: "798e65539f9733660a5f42a567c4d2020ce6efbf"
       url: "https://github.com/kmcite2020/manager.git"
     source: git
     version: "1.0.0+1"

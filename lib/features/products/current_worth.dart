@@ -1,52 +1,8 @@
-import '../../main.dart';
-
-final productsRM = RM.persistent(
-  () => Products(),
-  key: 'products',
-  fromJson: Products.fromJson,
-);
-
-Products get productsState => productsRM();
-set productsState(Products _) => productsRM(_);
-List<Product> get products => productsState.cache.values.toList();
-Product getProductByID(String productID) {
-  return productsState.cache[productID] ?? Product().copyWith(productID: '');
-}
-
-void setProduct(Product product) {
-  productsState = productsState.copyWith(
-    cache: Map.of(productsState.cache)..[product.productID] = product,
-  );
-}
-
-void removeProduct(String productID) {
-  productsState = productsState.copyWith(
-    cache: Map.of(productsState.cache)..remove(productID),
-  );
-}
-
-void clearProducts() => productsState = Products();
-
-Future<String?> filePicker() async {
-  FilePickerResult? filePickerResult = await FilePicker.platform.pickFiles(
-    dialogTitle: 'Select Image for Product',
-    type: FileType.custom,
-    allowedExtensions: [
-      'jpg',
-      'png',
-    ],
-  );
-  if (filePickerResult != null) {
-    final imageFile = filePickerResult.files.first;
-    return base64Encode(imageFile.bytes!);
-  } else {
-    return null;
-  }
-}
+import 'package:ideal_store/main.dart';
 
 String get currentWorth {
   late String worth;
-  double temp = products.fold(
+  double temp = productsRM().products.fold(
       0.0,
       (previousValue, element) =>
           previousValue + (element.stock * element.price));

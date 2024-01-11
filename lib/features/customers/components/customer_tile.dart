@@ -42,9 +42,9 @@ class CustomerTile extends UI {
         }
 
         Widget Edit() {
-          final possibleProducts = products.where(
-            (element) => !customer.products.contains(element.productID),
-          );
+          final possibleProducts = productsRM().products.where(
+                (element) => !customer.products.contains(element.productID),
+              );
           return Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -87,7 +87,7 @@ class CustomerTile extends UI {
               Wrap(
                 children: customer.products
                     .map(
-                      (eachProductID) => Product.id(eachProductID),
+                      (eachProductID) => Product.fromID(eachProductID),
                     )
                     .map(
                       (eachProduct) => SizedBox(

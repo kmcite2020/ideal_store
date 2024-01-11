@@ -5,7 +5,7 @@ export 'dart:math';
 export 'package:colornames/colornames.dart';
 export 'package:file_picker/file_picker.dart';
 export 'package:flex_color_scheme/flex_color_scheme.dart';
-export 'package:flutter/material.dart' hide Listener;
+export 'package:flutter/material.dart';
 export 'package:flutter/services.dart';
 export 'package:freezed_annotation/freezed_annotation.dart';
 export 'package:google_fonts/google_fonts.dart';
@@ -23,7 +23,6 @@ export 'package:ideal_store/features/products/components/product_tile.dart';
 export 'package:ideal_store/features/products/pages/product_page.dart';
 export 'package:ideal_store/features/products/pages/products_page.dart';
 export 'package:ideal_store/features/products/product.dart';
-export 'package:ideal_store/features/products/products_controller.dart';
 export 'package:ideal_store/features/settings/components/fonts_ui.dart';
 export 'package:ideal_store/features/settings/components/material_colors_ui.dart';
 export 'package:ideal_store/features/settings/components/theme_modes_ui.dart';
@@ -41,7 +40,11 @@ export 'package:path_provider/path_provider.dart';
 export 'package:uuid/uuid.dart';
 
 void main() async {
-  await initializeDependencies();
+  WidgetsFlutterBinding.ensureInitialized();
+  await RM.initStorage();
+  await imageRM.refresh();
+  GoogleFonts.config.allowRuntimeFetching = false;
+  addLicenses();
   runApp(App());
 }
 

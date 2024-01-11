@@ -7,15 +7,13 @@ part of 'order.dart';
 // **************************************************************************
 
 _$OrderImpl _$$OrderImplFromJson(Map<String, dynamic> json) => _$OrderImpl(
-      orderID: json['orderID'] as String? ?? '',
+      orderID: json['orderID'] as String,
       editing: json['editing'] as bool? ?? true,
       orderStatus:
           $enumDecodeNullable(_$OrderStatusEnumMap, json['orderStatus']) ??
               OrderStatus.ordered,
-      createdOn: json['createdOn'] == null
-          ? null
-          : DateTime.parse(json['createdOn'] as String),
-      customer: json['customer'] as String?,
+      createdOn: DateTime.parse(json['createdOn'] as String),
+      customerID: json['customerID'] as String,
       products: (json['products'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
@@ -27,8 +25,8 @@ Map<String, dynamic> _$$OrderImplToJson(_$OrderImpl instance) =>
       'orderID': instance.orderID,
       'editing': instance.editing,
       'orderStatus': _$OrderStatusEnumMap[instance.orderStatus]!,
-      'createdOn': instance.createdOn?.toIso8601String(),
-      'customer': instance.customer,
+      'createdOn': instance.createdOn.toIso8601String(),
+      'customerID': instance.customerID,
       'products': instance.products,
     };
 

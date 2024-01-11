@@ -13,7 +13,7 @@ class ProductsPage extends UI {
           IconButton(
             tooltip: 'Add Product',
             onPressed: () {
-              setProduct(Product().copyWith());
+              productsRM().setProduct(Product().copyWith());
             },
             icon: Icon(
               Icons.add_shopping_cart,
@@ -35,18 +35,18 @@ class ProductsPage extends UI {
           physics: BouncingScrollPhysics(),
           child: Column(
             children: [
-              if (products.isEmpty)
+              if (productsRM().products.isEmpty)
                 emptyListInfoProduct
                     .text(
                       textScaleFactor: 2,
                     )
                     .pad(),
-              ...products.map(
-                (eachProduct) => ProductTile(
-                  productID: eachProduct.productID,
-                  size: size,
-                ),
-              ),
+              ...productsRM().products.map(
+                    (eachProduct) => ProductTile(
+                      productID: eachProduct.productID,
+                      size: size,
+                    ),
+                  ),
             ],
           ),
         ),
