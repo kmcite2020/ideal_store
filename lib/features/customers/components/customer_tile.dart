@@ -31,7 +31,7 @@ class CustomerTile extends UI {
               IconButton.filled(
                 icon: customer.name.toUpperCase().text(),
                 onPressed: () =>
-                    navigator.to(CustomerPage.path, arguments: customerID),
+                    navigator.to(CustomerPage(customerID: customerID)),
               ).pad(),
               IconButton.filled(
                 icon: customer.city.toUpperCase().text(),

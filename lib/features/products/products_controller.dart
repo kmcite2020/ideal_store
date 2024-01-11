@@ -1,12 +1,9 @@
 import '../../main.dart';
 
-final productsRM = RM.create(
+final productsRM = RM.persistent(
   () => Products(),
-  persistenceSettings: PersistenceSettings(
-    key: 'products',
-    fromJson: (json) => Products.fromJson(jsonDecode(json)),
-    toJson: (s) => jsonEncode(s.toJson()),
-  ),
+  key: 'products',
+  fromJson: Products.fromJson,
 );
 
 Products get productsState => productsRM();

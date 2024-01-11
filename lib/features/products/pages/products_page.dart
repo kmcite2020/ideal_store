@@ -21,7 +21,7 @@ class ProductsPage extends UI {
           ).pad(),
           IconButton(
             tooltip: 'Back to Dashboard',
-            onPressed: () => navigator.toDeeply(DashboardPage.path),
+            onPressed: () => navigator.to(DashboardPage()),
             icon: Icon(
               Icons.arrow_back,
             ),

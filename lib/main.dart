@@ -1,9 +1,9 @@
 import 'main.dart';
-export 'package:file_picker/file_picker.dart';
 
 export 'dart:convert';
 export 'dart:math';
 export 'package:colornames/colornames.dart';
+export 'package:file_picker/file_picker.dart';
 export 'package:flex_color_scheme/flex_color_scheme.dart';
 export 'package:flutter/material.dart' hide Listener;
 export 'package:flutter/services.dart';
@@ -32,11 +32,11 @@ export 'package:ideal_store/features/settings/settings.dart';
 export 'package:ideal_store/features/settings/settings_controller.dart';
 export 'package:ideal_store/features/shared/cities.dart';
 export 'package:ideal_store/features/shared/extensions.dart';
-export 'package:ideal_store/features/shared/manager.dart';
 export 'package:ideal_store/features/shared/router.dart';
 export 'package:ideal_store/features/shared/theme_manager.dart';
 export 'package:ideal_store/features/shared/utils.dart';
 export 'package:ideal_store/main.dart';
+export 'package:manager/manager.dart';
 export 'package:path_provider/path_provider.dart';
 export 'package:uuid/uuid.dart';
 
@@ -50,9 +50,11 @@ class App extends UI {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routeInformationParser: navigator.routeInformationParser,
-      routerDelegate: navigator.routerDelegate,
+    return MaterialApp(
+      navigatorKey: RM.navigatorKey,
+      // routeInformationParser: navigator.routeInformationParser,
+      // routerDelegate: navigator.routerDelegate,
+      home: DashboardPage(),
       debugShowCheckedModeBanner: false,
       theme: theme,
       darkTheme: darkTheme,

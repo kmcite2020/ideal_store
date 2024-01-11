@@ -12,14 +12,15 @@ const emptyListInfoCustomer =
 
 const emptyListInfoProduct =
     'Currently there are no products available in the list. Kindly try adding some products using the corner button.';
-const customersHiveName = 'customer';
-const productsHiveName = 'products';
-const ordersHiveName = 'orders';
 late String defaultImage;
 Future<void> get initDefaultImage async {
   ByteData bytes = await rootBundle.load('lib/assets/icon.png');
   defaultImage = base64Encode(bytes.buffer.asUint8List());
 }
+
+final imageRM = RM.simple(
+  () => rootBundle.load('lib/assets/icon.png'),
+);
 
 Future<void> initializeDependencies() async {
   WidgetsFlutterBinding.ensureInitialized();

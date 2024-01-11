@@ -1,5 +1,3 @@
-import 'package:states_rebuilder/states_rebuilder.dart';
-
 import '../../../main.dart';
 
 class ProductPage extends UI {
@@ -101,18 +99,18 @@ class ProductPage extends UI {
                           onPressed: () async {
                             final image = await filePicker();
                             if (image == null) {
-                              navigator.scaffold.showSnackBar(
-                                SnackBar(
-                                  content: 'Image not selected'
-                                      .text()
-                                      .pad()
-                                      .center(),
-                                  duration: 1.seconds,
-                                  padding: EdgeInsets.all(8),
-                                  behavior: SnackBarBehavior.floating,
-                                  margin: EdgeInsets.all(8),
-                                ),
-                              );
+                              // navigator.scaffold.showSnackBar(
+                              //   SnackBar(
+                              //     content: 'Image not selected'
+                              //         .text()
+                              //         .pad()
+                              //         .center(),
+                              //     duration: 1.seconds,
+                              //     padding: EdgeInsets.all(8),
+                              //     behavior: SnackBarBehavior.floating,
+                              //     margin: EdgeInsets.all(8),
+                              //   ),
+                              // );
                               return;
                             }
                             setProduct(product.copyWith(image: image));

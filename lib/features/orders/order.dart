@@ -24,13 +24,10 @@ class Order with _$Order {
   factory Order.id(String orderID) => ordersRM().cache[orderID]!;
 }
 
-final ordersRM = RM.create(
+final ordersRM = RM.persistent(
   () => Orders(),
-  persistenceSettings: PersistenceSettings(
-    key: 'orders',
-    fromJson: (json) => Orders.fromJson(jsonDecode(json)),
-    toJson: (s) => jsonEncode(s.toJson()),
-  ),
+  key: 'orders',
+  fromJson: Orders.fromJson,
 );
 
 @freezed

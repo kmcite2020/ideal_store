@@ -554,10 +554,11 @@ class __$$ProductsImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ProductsImpl implements _Products {
+class _$ProductsImpl extends _Products {
   const _$ProductsImpl(
       {final Map<String, Product> cache = const <String, Product>{}})
-      : _cache = cache;
+      : _cache = cache,
+        super._();
 
   factory _$ProductsImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductsImplFromJson(json);
@@ -603,8 +604,9 @@ class _$ProductsImpl implements _Products {
   }
 }
 
-abstract class _Products implements Products {
+abstract class _Products extends Products {
   const factory _Products({final Map<String, Product> cache}) = _$ProductsImpl;
+  const _Products._() : super._();
 
   factory _Products.fromJson(Map<String, dynamic> json) =
       _$ProductsImpl.fromJson;

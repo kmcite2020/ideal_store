@@ -20,6 +20,12 @@ class SettingsPage extends UI {
         children: [
           'Customers'.text(textScaleFactor: 4).pad(),
           ElevatedButton(
+            onPressed: () {
+              RM.resetStates();
+            },
+            child: 'Reset All States'.text(),
+          ).pad(),
+          ElevatedButton(
             onPressed: customers.isEmpty
                 ? null
                 : () {
@@ -28,14 +34,16 @@ class SettingsPage extends UI {
             child: 'Delete All Customers'.text(),
           ).pad(),
           'Products'.text(textScaleFactor: 4).pad(),
-          ElevatedButton(
-            onPressed: products.isEmpty
-                ? null
-                : () {
-                    clearProducts();
-                  },
-            child: 'Delete All Products'.text(),
-          ).pad(),
+          productsRM.build(
+            (state) => ElevatedButton(
+              onPressed: state.products.isEmpty
+                  ? null
+                  : () {
+                      state.clearAll();
+                    },
+              child: 'Delete All Products'.text(),
+            ).pad(),
+          ),
           const ThemeModesUI(),
           const MaterialColorsUI(),
           const FontsUI(),

@@ -1,6 +1,10 @@
 import 'package:ideal_store/main.dart';
 
-final settingsRM = RM.create(() => Settings());
+final settingsRM = RM.persistent(
+  () => Settings(),
+  key: 'settings',
+  fromJson: Settings.fromJson,
+);
 
 Settings get settingsState => settingsRM();
 set settingsState(Settings value) => settingsRM(value);

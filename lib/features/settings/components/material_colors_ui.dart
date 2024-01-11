@@ -1,12 +1,6 @@
-import 'package:colornames/colornames.dart';
-import 'package:flutter/material.dart';
-import 'package:ideal_store/features/settings/settings_controller.dart';
-import 'package:states_rebuilder/states_rebuilder.dart';
+import '../../../main.dart';
 
-import '../../shared/extensions.dart';
-import '../../shared/theme_manager.dart';
-
-class MaterialColorsUI extends ReactiveStatelessWidget {
+class MaterialColorsUI extends UI {
   const MaterialColorsUI({super.key});
   @override
   Widget build(BuildContext context) {

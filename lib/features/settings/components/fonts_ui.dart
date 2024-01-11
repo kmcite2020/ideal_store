@@ -1,12 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:ideal_store/features/settings/settings_controller.dart';
-import 'package:ideal_store/features/shared/theme_manager.dart';
-import 'package:states_rebuilder/states_rebuilder.dart';
+import 'package:ideal_store/main.dart';
 
-import '../../shared/extensions.dart';
-import '../../shared/utils.dart';
-
-class FontsUI extends ReactiveStatelessWidget {
+class FontsUI extends UI {
   const FontsUI({super.key});
   @override
   Widget build(BuildContext context) {

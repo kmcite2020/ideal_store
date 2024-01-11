@@ -36,6 +36,9 @@ class Products with _$Products {
   const factory Products({
     @Default(<String, Product>{}) final Map<String, Product> cache,
   }) = _Products;
+  const Products._();
+  List<Product> get products => cache.values.toList();
+  void clearAll() => productsRM(Products());
 
   factory Products.fromJson(json) => _$ProductsFromJson(json);
 }

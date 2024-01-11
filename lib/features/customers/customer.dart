@@ -33,13 +33,10 @@ class Customers with _$Customers {
       _$CustomersFromJson(json);
 }
 
-final customersRM = RM.create(
+final customersRM = RM.persistent<Customers>(
   () => const Customers(),
-  persistenceSettings: PersistenceSettings(
-    key: 'customers',
-    fromJson: (json) => Customers.fromJson(jsonDecode(json)),
-    toJson: (s) => jsonEncode(s.toJson()),
-  ),
+  key: 'customers',
+  fromJson: Customers.fromJson,
 );
 
 List<Customer> get customers => customersRM().cache.values.toList();
